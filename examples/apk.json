@@ -1,0 +1,20 @@
+{
+    "exec": "/sbin/apk",
+    "commands": {
+        "autoremove": "autoremove",
+        "deps": "",
+        "download": "download",
+        "fix": "fix",
+        "install": "add",
+        "remove": "del",
+        "update": "update",
+        "upgrade": "upgrade",
+        "build": "",
+        "depends": "depends",
+        "info": "show",
+        "help": "help",
+        "search": "search",
+        "version": "version",
+        "installed": ""
+    }
+}
