@@ -13,7 +13,7 @@ vet:
 	go vet ./...
 
 grab:
-	go run cmd/qas/main.go --grab
+	go run cmd/${NAME}/main.go --grab
 
 imports:
 	goimports -l -w .
