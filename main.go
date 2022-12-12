@@ -1,51 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	"os/exec"
-	"strings"
-
 	"github.com/alecthomas/kong"
-	"github.com/easbarba/zae/internal/config"
+	"github.com/easbarba/zae/internal/commands"
 )
 
-func system(cmd []string) {
-	command := strings.Join(cmd, " ")
-	fmt.Println(command)
-
-	cm := exec.Command("sh", "-c", command) // TODO
-	stdout, err := cm.Output()
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-
-	fmt.Println(string(stdout))
-}
-
-func configs() (config.Raw, error) {
-	configs := config.All()
-	var err error
-
-	for _, cfg := range configs {
-		if _, err := os.Stat(cfg.Exec); err == nil {
-			return cfg, nil
-		}
-	}
-
-	// current distro is not listed in configuration files
-	return config.Raw{}, err
-}
-
-func cfgFound() config.Raw {
-	meh, err := configs()
-
-	if err != nil {
-		panic(err)
-	}
-	return meh
-}
+var cfg = commands.Found()
 
 func main() {
 	ctx := kong.Parse(&cli)
@@ -79,8 +39,7 @@ type CleanCmd struct {
 }
 
 func (r *CleanCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Clean})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Clean})
 
 	return nil
 }
@@ -90,8 +49,7 @@ type DepsCmd struct {
 }
 
 func (r *DepsCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Deps, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Deps, r.Package})
 
 	return nil
 }
@@ -101,8 +59,7 @@ type DependsCmd struct {
 }
 
 func (r *DependsCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Depends, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Depends, r.Package})
 
 	return nil
 }
@@ -112,8 +69,7 @@ type DownloadCmd struct {
 }
 
 func (r *DownloadCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Download, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Download, r.Package})
 
 	return nil
 }
@@ -123,8 +79,7 @@ type FixCmd struct {
 }
 
 func (r *FixCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Fix, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Fix, r.Package})
 
 	return nil
 }
@@ -134,8 +89,7 @@ type HelpCmd struct {
 }
 
 func (r *HelpCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Help, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Help, r.Package})
 
 	return nil
 }
@@ -145,8 +99,7 @@ type InfoCmd struct {
 }
 
 func (r *InfoCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Info, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Info, r.Package})
 
 	return nil
 }
@@ -156,8 +109,7 @@ type InstallCmd struct {
 }
 
 func (r *InstallCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Install, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Install, r.Package})
 
 	return nil
 }
@@ -166,8 +118,7 @@ type InstalledCmd struct {
 }
 
 func (r *InstalledCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Installed})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Installed})
 
 	return nil
 }
@@ -177,8 +128,7 @@ type RemoveCmd struct {
 }
 
 func (r *RemoveCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Remove, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Remove, r.Package})
 
 	return nil
 }
@@ -191,8 +141,7 @@ type SearchCmd struct {
 }
 
 func (r *SearchCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Search, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Search, r.Package})
 
 	return nil
 }
@@ -201,8 +150,7 @@ type UpdateCmd struct {
 }
 
 func (r *UpdateCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Update})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Update})
 
 	return nil
 }
@@ -212,8 +160,7 @@ type UpgradeCmd struct {
 }
 
 func (r *UpgradeCmd) Run(ctx *Context) error {
-	cfg := cfgFound()
-	system([]string{cfg.Exec, cfg.Commands.Upgrade, r.Package})
+	commands.Run([]string{cfg.Exec, cfg.Commands.Upgrade, r.Package})
 
 	return nil
 }
