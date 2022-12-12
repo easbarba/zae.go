@@ -1,8 +1,10 @@
+NAME := zae
+
 deps:
 	go mod download
 
 install:
-	go build -o ${HOME}/.local/bin/qas ./cmd/qas/main.go
+	go build -o ${HOME}/.local/bin/${NAME} ./cmd/${NAME}/main.go
 
 lint:
 	golint ./...
