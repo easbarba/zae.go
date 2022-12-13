@@ -75,7 +75,8 @@ func files() []fs.FileInfo {
 	files, err := ioutil.ReadDir(Folder())
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	return files
@@ -86,13 +87,15 @@ func parse(filepath string) Raw {
 	var proj Raw
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	err = json.Unmarshal(file, &proj)
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	return proj
@@ -103,7 +106,8 @@ func home() string {
 	home, err := os.UserHomeDir()
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	return home

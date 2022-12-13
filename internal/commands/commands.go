@@ -11,25 +11,24 @@ import (
 func Run(args ...string) {
 	var stdout []byte
 	var err error
-	// var su string = ""
 
 	fmt.Println(args)
 
 	stdout, err = exec.Command(args[0], args[:1]...).Output()
 
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		fmt.Fprintln(os.Stderr, err.Error())
+		os.Exit(1)
 	}
 
 	fmt.Println(string(stdout))
 }
 
 func configs() (config.Raw, error) {
-	configs := config.All()
+	cfgs := config.All()
 	var err error
 
-	for _, cfg := range configs {
+	for _, cfg := range cfgs {
 		if _, err := os.Stat(cfg.Exec); err == nil {
 			return cfg, nil
 		}
@@ -40,10 +39,11 @@ func configs() (config.Raw, error) {
 }
 
 func Found() config.Raw {
-	meh, err := configs()
-
+	result, err := configs()
 	if err != nil {
-		panic(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
-	return meh
+
+	return result
 }
