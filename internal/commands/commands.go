@@ -2,37 +2,21 @@ package commands
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
-	"os/user"
-	"strings"
 
 	"github.com/easbarba/zae/internal/config"
 )
 
-func isRoot() bool {
-	currentUser, err := user.Current()
-	if err != nil {
-		log.Fatalf("[isRoot] Unable to get current user: %s", err)
-	}
+func Run(args ...string) {
+	var stdout []byte
+	var err error
+	// var su string = ""
 
-	return currentUser.Username == "root"
-}
+	fmt.Println(args)
 
-func Run(cmd []string) {
-	var su string
+	stdout, err = exec.Command(args[0], args[:1]...).Output()
 
-	if isRoot() == false {
-		su = "sudo "
-	}
-
-	command := su + strings.Join(cmd, " ")
-	fmt.Println(command)
-
-	cm := exec.Command("sh", "-c", command)
-
-	stdout, err := cm.Output()
 	if err != nil {
 		fmt.Println(err.Error())
 		return

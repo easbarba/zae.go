@@ -39,7 +39,7 @@ type CleanCmd struct {
 }
 
 func (r *CleanCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Clean})
+	commands.Run(cfg.Exec, cfg.Commands.Clean)
 
 	return nil
 }
@@ -49,7 +49,7 @@ type DepsCmd struct {
 }
 
 func (r *DepsCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Deps, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Deps, r.Package)
 
 	return nil
 }
@@ -59,7 +59,7 @@ type DependsCmd struct {
 }
 
 func (r *DependsCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Depends, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Depends, r.Package)
 
 	return nil
 }
@@ -69,7 +69,7 @@ type DownloadCmd struct {
 }
 
 func (r *DownloadCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Download, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Download, r.Package)
 
 	return nil
 }
@@ -79,7 +79,7 @@ type FixCmd struct {
 }
 
 func (r *FixCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Fix, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Fix, r.Package)
 
 	return nil
 }
@@ -89,7 +89,7 @@ type HelpCmd struct {
 }
 
 func (r *HelpCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Help, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Help, r.Package)
 
 	return nil
 }
@@ -99,7 +99,7 @@ type InfoCmd struct {
 }
 
 func (r *InfoCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Info, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Info, r.Package)
 
 	return nil
 }
@@ -109,7 +109,7 @@ type InstallCmd struct {
 }
 
 func (r *InstallCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Install, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Install, r.Package)
 
 	return nil
 }
@@ -118,7 +118,7 @@ type InstalledCmd struct {
 }
 
 func (r *InstalledCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Installed})
+	commands.Run(cfg.Exec, cfg.Commands.Installed)
 
 	return nil
 }
@@ -128,7 +128,7 @@ type RemoveCmd struct {
 }
 
 func (r *RemoveCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Remove, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Remove, r.Package)
 
 	return nil
 }
@@ -141,7 +141,7 @@ type SearchCmd struct {
 }
 
 func (r *SearchCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Search, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Search, r.Package)
 
 	return nil
 }
@@ -150,7 +150,7 @@ type UpdateCmd struct {
 }
 
 func (r *UpdateCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Update})
+	commands.Run(cfg.Exec, cfg.Commands.Update)
 
 	return nil
 }
@@ -160,7 +160,7 @@ type UpgradeCmd struct {
 }
 
 func (r *UpgradeCmd) Run(ctx *Context) error {
-	commands.Run([]string{cfg.Exec, cfg.Commands.Upgrade, r.Package})
+	commands.Run(cfg.Exec, cfg.Commands.Upgrade, r.Package)
 
 	return nil
 }
