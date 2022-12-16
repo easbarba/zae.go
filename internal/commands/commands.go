@@ -8,14 +8,18 @@ import (
 	"github.com/easbarba/zae/internal/config"
 )
 
-func Run(args ...string) {
-	var stdout []byte
-	var err error
+func Run(command string, args ...string) {
+	fmt.Println("commands: ", command, args)
 
-	fmt.Println(args)
+	cmd := exec.Command(command, args...)
 
-	stdout, err = exec.Command(args[0], args[:1]...).Output()
+	err := cmd.Run()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
+		os.Exit(1)
+	}
 
+	stdout, err := cmd.Output()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)

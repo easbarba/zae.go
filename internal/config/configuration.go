@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/fs"
 	"io/ioutil"
-	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -35,6 +34,9 @@ type Raw struct {
 	} `json:"commands"`
 }
 
+// Folder that config files will be looked up for
+var folder string = path.Join(home(), ".config", "zae")
+
 // All configuration files unmarshallowed
 func All() []Raw {
 	var result []Raw
@@ -43,7 +45,7 @@ func All() []Raw {
 	fmt.Println("Configuration files found: ")
 
 	for _, file := range files {
-		p := path.Join(Folder(), file.Name())
+		p := path.Join(folder, file.Name())
 		fileInfo, err := os.Stat(p)
 
 		// ignore broken symbolic link
@@ -56,7 +58,7 @@ func All() []Raw {
 			continue
 		}
 
-		// ignore csv files (legacy)
+		// ignore yaml files (legacy)
 		if ext := filepath.Ext(p); ext == ".yaml" {
 			continue
 		}
@@ -72,7 +74,7 @@ func All() []Raw {
 
 // array of configuratiion file name
 func files() []fs.FileInfo {
-	files, err := ioutil.ReadDir(Folder())
+	files, err := ioutil.ReadDir(folder)
 
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -111,11 +113,4 @@ func home() string {
 	}
 
 	return home
-}
-
-// Folder that config files will be looked up for
-func Folder() string {
-	result := path.Join(home(), ".config", "zae")
-
-	return result
 }
