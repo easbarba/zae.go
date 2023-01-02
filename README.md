@@ -97,6 +97,12 @@ as standalone package to follow the UNIX main rule: 'do one thing, well'.
 
 ### HIGH
 
+- add/overwrite configuration via cli: 
+
+`$ zae --new apt,/usr/bin/apt,install,install`
+
+`$ zae -add apk,remove,del`
+
 - consume configuration provided by early command: `wget -qO- short.li/config.json | zae search git`
 - use environment variable `$ZAE_CONFIG` to select configuration file, useful for root/containers
 - Let user select configuration file by absolute path
