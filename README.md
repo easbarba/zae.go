@@ -95,19 +95,28 @@ as standalone package to follow the UNIX main rule: 'do one thing, well'.
 
 ## TODO
 
+### HIGH
+
 - use environment variable `$ZAE_CONFIG` to select configuration file, useful for root/containers
 - let user select configuration file by absolute path or
+- error handling
 - implement whats is applicable of the twelve factors.
+
+### LOW
+
+- concurrency at processing commands or finding files...
 - let user provide w/ additional options to commands (--options).
-- generate configuration template
-- check if current config has suspect commands as rm,cd,mv, before running
 - log configuration changes
 - history of commands
 - upload to main repository package
-- dry-run.
 - non-safe mode.
-- error handling
-- concurrency at processing commands or finding files...
+
+### Good first PR
+
+- check if current config has suspect commands as rm,cd,mv, before running
+- generate configuration template
+- dry-run.
+
 
 ## License
 
