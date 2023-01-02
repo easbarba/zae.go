@@ -95,7 +95,8 @@ as standalone package to follow the UNIX main rule: 'do one thing, well'.
 
 ## TODO
 
-- let user select configuration file by absolute path
+- use environment variable `$ZAE_CONFIG` to select configuration file, useful for root/containers
+- let user select configuration file by absolute path or
 - implement whats is applicable of the twelve factors.
 - let user provide w/ additional options to commands (--options).
 - generate configuration template
