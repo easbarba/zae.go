@@ -97,6 +97,7 @@ as standalone package to follow the UNIX main rule: 'do one thing, well'.
 
 ### HIGH
 
+- `--save` json configuration provided by cli  
 - add/overwrite configuration via cli: 
 
 `$ zae --new apt,/usr/bin/apt,install,install`
