@@ -97,9 +97,9 @@ as standalone package to follow the UNIX main rule: 'do one thing, well'.
 
 ### HIGH
 
-- use environment variable `$ZAE_CONFIG` to select configuration file, useful for root/containers
 - consume configuration provided by early command: `wget -qO- short.li/config.json | zae search git`
-- Let user select configuration file by absolute path or
+- use environment variable `$ZAE_CONFIG` to select configuration file, useful for root/containers
+- Let user select configuration file by absolute path
 - error handling
 - implement whats is applicable of the twelve factors.
 
